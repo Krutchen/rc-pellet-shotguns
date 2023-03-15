@@ -10,5 +10,5 @@ A Semi automatic combat shotgun should have less range and pellets, a sidearm sh
 If you do an AT blast like the Chaos "Inferno Blast", reduce your pellets and max range as a trade for AT pellets.
 
 Details about the EXAMPLE SCRIPTS
-PUMP ACTION - .57 refire rate, 8 shots a little under 2 shots a second. This is a slowish firing pump action with moderate range, you can hammer the trigger but it grows in spread.
-This is the script currently in "[Heretech] Combat Shotgun v.1.1"
+PUMP ACTION - .57 refire rate, 8 shots a little under 2 shots a second. This is a slowish firing pump action with moderate range, you can hammer the trigger but it grows in spread. 10 Pellets, 10 AT to LBA Light objects
+This is the script currently in "[Heretech] Combat Shotgun v.1.1" and is a 1:1 with our Accatran pump shotgun.
