@@ -1,6 +1,6 @@
 //HOW TO BALANCE SHOTGUN - THIS IS A GUIDELINE NOT A RULEBOOK, DON'T GO WAY OFF THIS AND MAKE YOUR SHOTGUN LAME THOUGH
 //Reload time = 4.8 * .5 = 2.4  // Get your reload time, half it if interuptable (pump action) because that's a huge boon.
-//Total dump time = Magdump time + Reload time = 4.56 + 2.4 = 6.96 
+//Total dump time = Magdump time + Reload time = 4.56 + 2.4 = 6.96 - This shotgun has a .57 delay between each shot + growing spread
 //Dump per min = 60/Total dump time =  60/6.96 = 8.62 can magdump 8.62 times in a minute
 //RPM = Number of shots * Dump per min = 8 * 8.62 = 68.96 which means this is 68.96 RPM
 //Pellet Count = 750 (Ballpark average rifle rpm) / RPM rounded to nearest number - 750/69 = 10.8, round down to 10
