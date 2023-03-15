@@ -134,10 +134,9 @@ default
             {
                 llSetTimerEvent(0);
                 fpos=llGetCameraPos();
-                frot=llGetCameraRot()*(llEuler2Rot(<0,color.y-.5,color.z-.5>));
+                frot=llGetCameraRot();
                 if(color.x==.1)
                 {
-                    frot=llGetCameraRot();
                     float calc=(float)llGetObjectDesc();
                     float hc=calc*.5;
                     mode=0;
