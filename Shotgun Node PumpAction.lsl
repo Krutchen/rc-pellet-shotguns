@@ -1,21 +1,25 @@
 //HOW TO BALANCE SHOTGUN - THIS IS A GUIDELINE NOT A RULEBOOK, DON'T GO WAY OFF THIS AND MAKE YOUR SHOTGUN LAME THOUGH
 //Reload time = 4.8 * .5 = 2.4  // Get your reload time, half it if interuptable (pump action) because that's a huge boon.
-//Total dump time = Magdump time + Reload time = 4.56 + 2.4 = 6.96 - This shotgun has a .57 delay between each shot + growing spread
+//Total dump time = Magdump time + Reload time = 4.56 + 2.4 = 6.96 
 //Dump per min = 60/Total dump time =  60/6.96 = 8.62 can magdump 8.62 times in a minute
 //RPM = Number of shots * Dump per min = 8 * 8.62 = 68.96 which means this is 68.96 RPM
 //Pellet Count = 750 (Ballpark average rifle rpm) / RPM rounded to nearest number - 750/69 = 10.8, round down to 10
 //100-RPM = gives you your max kill range, rounded down to nearest 5. - 100-68.96 gives us 31.04 rounded to 30. Falloff range should be 150% of max kill range
 //Keep your basic buckshot to 1 AT on LBA Light only, make other round types for extra effects that trade effectiveness vs infantry and etc
-vector pos;
-rotation rot;
 vector fpos;
 rotation frot;
 float max=30;//Max range at what 
 float end=75;//This should be 
 float falloff=2.2;//Your value for per meter falloff should be 100/(end-max), ie 100/45=2.2222222
-integer mode=0;
-integer hits;
 integer at=1;
+//spread values
+float base=.04;//Resting accuracy
+float mod=.0135;//Per shot increase
+float down=.024;//Per recovery tick decrease
+float cd=.85;//How long before accuracy recovery kicks in
+float rate=.21;//How fast the ticks are after recovery kicks in
+float maxspr=.08;//Maximum value for spread
+float spr=0;
 vector findrez(vector rez)
 {
     integer pf=llGetParcelFlags(rez)&PARCEL_FLAG_ALLOW_CREATE_OBJECTS;
@@ -137,9 +141,9 @@ default
                 frot=llGetCameraRot();
                 if(color.x==.1)
                 {
-                    float calc=(float)llGetObjectDesc();
+                    float calc=base+spr;
+                    llSetObjectDesc((string)calc);
                     float hc=calc*.5;
-                    mode=0;
                     results=[];
                     list hits;
                     integer pellets=10;
@@ -222,8 +226,24 @@ default
                         else llOwnerSay("/me :: Hit "+(string)tar+" "+(string)hits+" times for "+(string)dmg+" AT @ "+dist+"m");
                         len-=4;//Jump back by 4 values for the length of each entry
                     }
+                    if(spr<maxspr)spr+=mod;
+                    calc=base+spr;
+                    llSetObjectDesc((string)calc);
+                    llSetTimerEvent(cd);
                 }
             }
         }
+    }
+    timer()
+    {
+        spr-=down;
+        if(spr<=0)
+        {
+            spr=0;
+            llSetTimerEvent(0);
+        }
+        else llSetTimerEvent(rate);
+        float calc=base+spr;
+        llSetObjectDesc((string)calc);
     }
 }
